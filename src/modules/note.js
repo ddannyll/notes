@@ -7,7 +7,7 @@ class Note {
     constructor() {
         this.#content = ""
         this.#date = null
-        this.#id = Note.#count
+        this.#id = Note.#count.toString()
         Note.#count++
     }
     getContent() { return this.#content }

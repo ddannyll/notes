@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+body {
+    font-family: 'ubuntu';
+}
+
+.container {
+    display: grid;
+    grid-template-areas: 
+        "head head head"
+        "side main .";
+    grid-template-columns: 1fr 5fr;
+    column-gap: 10px;
+}
+
+.header {
+    grid-area: head;
+    background-color: aliceblue;
+}
+
+.sidebar {
+    grid-area: side;
+}
+
+.main {
+    grid-area: main;
+    justify-self: center;
+    width: 100%;
+    max-width: 700px;
+}
+
+.cross {
+    text-decoration: line-through;
+}
+
+.note {
+    display: flex;
+    justify-content: space-between;
+    column-gap: 20px;
+}
+
+.note p {
+    flex-grow: 1;
+    overflow-wrap: anywhere;
+}
+
+.note input[type="date"] {
+    flex-shrink: 0;
+}

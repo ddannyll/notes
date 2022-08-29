@@ -11,7 +11,7 @@ class Project {
         this.#name = name
         this.#date = null
         this.#notes = []
-        this.#id = Project.#count
+        this.#id = Project.#count.toString()
         Project.#count++
     }
 
@@ -21,6 +21,13 @@ class Project {
     getId() { return this.#id }
     setName(name) { this.#name = name }
     setDate(date) { this.#date = date }
+    getNoteFromId(id) { 
+        const matches = this.#notes.filter((note) =>  note.getId() === id )
+        if (matches.length != 0) {
+            return matches[0]
+        }
+        return null
+    }
     appendNote(note) {
         this.#notes.push(note)
     }
