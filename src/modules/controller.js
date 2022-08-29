@@ -56,6 +56,7 @@ function displayInputPopup(labelText, onsubmitFunction) {
     const input = document.createElement('input')
     input.type = "text"
     input.id = "popup-input"
+    input.required = true
     form.appendChild(input)
     
     const label = document.createElement('label')
