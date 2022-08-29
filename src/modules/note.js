@@ -1,16 +1,15 @@
 class Note {
     static #count = 0
     #id
-    #content;
-    #date;
-    #isComplete;
+    #content
+    #date
+    #isComplete
     constructor() {
         this.#content = ""
         this.#date = null
         this.#id = Note.#count
         Note.#count++
     }
-
     getContent() { return this.#content }
     getDate() { return this.#date }
     getId() { return this.#id }

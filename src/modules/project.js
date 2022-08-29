@@ -21,7 +21,6 @@ class Project {
     getId() { return this.#id }
     setName(name) { this.#name = name }
     setDate(date) { this.#date = date }
-
     appendNote(note) {
         this.#notes.push(note)
     }

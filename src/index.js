@@ -1,7 +1,4 @@
-import Project from "./modules/project";
-import Note from "./modules/note";
+//import 'destyle.css'
+import { loadPage } from './modules/controller'
 
-let newNote = new Note()
-newNote.setContent("test")
-let main = document.body.querySelector("main")
-main.innerText = newNote.getContent()
+loadPage()
