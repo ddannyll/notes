@@ -17,6 +17,12 @@ h1 {
     font-weight: 500;
 }
 
+h2 {
+    font-family: 'Alumni Sans Pinstripe';
+    font-size: 2rem;
+    font-weight: 700;
+}
+
 .container {
     display: grid;
     grid-template-areas: 
@@ -59,6 +65,7 @@ h1 {
 .note {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     column-gap: 20px;
 }
 
@@ -144,4 +151,65 @@ input[type="text"] {
     padding: 1rem;
     box-shadow: 0px 0px 10px -5px;
     border-radius: 0.5rem;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.notes-div {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.notes-div button {
+    opacity: 0.5;
+}
+
+.notes-div button:hover {
+    opacity: 0.8;
+    color: red;
+}
+
+.note > span {
+    position: relative;
+}
+
+.note input[type="checkbox"] {
+    height: 25px;
+    width: 25px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    border: 1px solid #34495E;
+    border-radius: 4px;
+    outline: none;
+    transition-duration: 0.3s;
+    cursor: pointer;
+}
+
+.note input[type="checkbox"] + i{
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.note input[type="checkbox"]:checked + i{
+    display: block;
+    pointer-events: none;
+}
+
+.notes-div > form > input[type="text"] {
+    width: 100%;
+}
+
+input[type="text"]:focus {
+    outline-width: 0;
 }

@@ -55,6 +55,12 @@ function newDeleteElement(action, className) {
     return deleteIcon
 }
 
+function newCheckboxIcon() {
+    const check = document.createElement('i')
+    check.classList.add('fa-solid', 'fa-check')
+    return check
+}
+
 function displayInputPopup(labelText, onsubmitFunction) {
     const form = document.createElement('form')
     form.className = 'popup'
@@ -106,10 +112,14 @@ function createNoteComponent(note) {
     div.className = 'note'
     div.id = `note-${id}`
     
-    const checkbox = document.createElement('input')
-    checkbox.type = 'checkbox'
-    div.appendChild(checkbox)
-    checkbox.onclick = () => { handleChecked(checkbox) }
+    const checkboxSpan = document.createElement('span')
+    const checkboxInput = document.createElement('input')
+    checkboxInput.type = 'checkbox'
+    checkboxInput.onclick = () => { handleChecked(checkboxInput) }
+    checkboxSpan.appendChild(checkboxInput)
+    const checkboxIcon = newCheckboxIcon()
+    checkboxSpan.appendChild(checkboxIcon)
+    div.appendChild(checkboxSpan)
     
     const p = document.createElement('p')
     p.innerText = note.getContent()
@@ -123,13 +133,13 @@ function createNoteComponent(note) {
     dateElement.value = date === null ? '' : date.toISOString().split('T')[0]
     div.appendChild(dateElement)
 
-    if (note.isComplete()) { checkbox.click() }
+    if (note.isComplete()) { checkboxInput.click() }
 
     return div
 }
 
 function handleChecked(checkbox) {
-    const outerDiv = checkbox.parentElement
+    const outerDiv = checkbox.parentElement.parentElement
     const note = getNoteFromId(outerDiv.id.replace('note-', ''))
     const p = outerDiv.querySelector('p')
     if (checkbox.checked) {
