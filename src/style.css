@@ -44,10 +44,6 @@ h1 {
     padding: 1rem;
 }
 
-.sidebar > hr {
-    margin: 1rem 0;
-    opacity: 0.4;
-}
 
 .main {
     grid-area: main;
@@ -75,9 +71,29 @@ h1 {
     flex-shrink: 0;
 }
 
-.sidebar button {
+
+.project-delete {
+    opacity: 0;
+    transition: 0.2s;
+}
+
+.project:hover .project-delete {
+    opacity: 0.8;
+}
+
+.project-delete:hover {
+    color: rgb(255, 40, 40);
+}
+
+.project {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#new-project {
     width: 100%;
-    padding: 0.5rem;
 }
 
 .popup input[type="submit"] {
@@ -86,14 +102,30 @@ h1 {
     padding: 0.5rem;
 }
 
-input[type="submit"],
-button {
+.sidebar button {
     transition: 0.2s ease-in-out
 }
 
-input[type="submit"]:hover,
-button:hover {
+.sidebar button:hover {
     background-color: rgba(255, 255, 255, .4);  
+}
+
+.sidebar > button {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-wrap: anywhere;
+}
+
+.sidebar > *:not(hr) {
+    padding: 0.5rem 0.7rem;
+    display: flex;
+    align-items: center;
+}
+
+
+hr {
+    margin: 1rem 0;
 }
 
 input[type="text"] {

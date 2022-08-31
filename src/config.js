@@ -1,9 +1,9 @@
 module.exports = {
-    primaryView: {
+    primaryTime: {
         name: 'Today',
         time: 24 // in hours
     },
-    secondaryView: {
+    secondaryTime: {
         name: 'Week',
         time: 24 * 7
     },

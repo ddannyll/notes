@@ -1,10 +1,12 @@
 import { fromUnixTime } from 'date-fns'
 import Note from './note'
 import Project from './project'
+import config from '../config'
 
 let projects = []
 const main = document.querySelector('div.main')
 const sidebar = document.querySelector('div.sidebar')
+
 
 function loadPage() {
     const home = new Project('Home')
@@ -36,11 +38,21 @@ function loadSidebar(home, customProjects) {
     sidebar.append(newProjectBtn)
     
     function appendProject(project) {
-        const projectComponent = createProjectComponent(project)
+        const projectComponent = createProjectComponent(project, true)
         sidebar.insertBefore(projectComponent, newProjectBtn)
     }
     
     customProjects.forEach(appendProject);
+
+    sidebar.querySelector('#primary-time').innerText = config.primaryTime.name
+    sidebar.querySelector('#secondary-time').innerText = config.secondaryTime.name
+}
+
+function newDeleteElement(action) {
+    const deleteIcon = document.createElement('button')
+    deleteIcon.classList.add('fa-solid', 'fa-xmark', 'project-delete')
+    deleteIcon.onclick = action
+    return deleteIcon
 }
 
 function displayInputPopup(labelText, onsubmitFunction) {
@@ -49,7 +61,6 @@ function displayInputPopup(labelText, onsubmitFunction) {
     form.onsubmit = (e) => { 
         e.preventDefault();
         onsubmitFunction(form.elements['popup-input'].value);
-        document.body.removeChild(form)
     }
     const label = document.createElement('label')
     label.for = "popup-input"
@@ -71,17 +82,21 @@ function displayInputPopup(labelText, onsubmitFunction) {
     input.focus()
 }
 
-function createProjectComponent(project) {
+function createProjectComponent(project, deletable) {
     const id = project.getId()
     const name = project.getName()
-    const div = document.createElement('div')
-    div.className = 'project'
     const btn = document.createElement('button')
+    btn.className = 'project'
     btn.id = `project-${id}`
     btn.innerText = name
     btn.onclick = () => { loadProjectNotes(project) }
-    div.appendChild(btn)
-    return div
+    if (deletable) {
+        btn.append(newDeleteElement(() => { 
+            projects.splice(projects.indexOf(project), 1);
+            btn.remove()
+        }))
+    }
+    return btn
 }
 
 function createNoteComponent(note) {
@@ -150,7 +165,6 @@ function loadProjectNotes(project) {
     newNoteForm.appendChild(newNoteInput)
     notesDiv.appendChild(newNoteForm)
 
-    activeProject = project
 }
 
 function getNoteFromId(id) {
