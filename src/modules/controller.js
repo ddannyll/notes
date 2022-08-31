@@ -3,7 +3,6 @@ import Note from './note'
 import Project from './project'
 
 let projects = []
-let activeProject
 const main = document.querySelector('div.main')
 const sidebar = document.querySelector('div.sidebar')
 
@@ -126,6 +125,7 @@ function handleChecked(checkbox) {
 }
 
 function loadProjectNotes(project) {
+    removePopup()
     main.innerHTML = ""
     const projectName = document.createElement('h2')
     projectName.innerText = project.getName()
@@ -165,6 +165,11 @@ function getNoteFromId(id) {
         }
     }
     return null
+}
+
+function removePopup() {
+    const popupList = document.querySelectorAll('.popup')
+    popupList.forEach((popup) => { popup.remove() })
 }
 
 
