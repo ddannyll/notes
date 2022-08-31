@@ -48,10 +48,10 @@ function loadSidebar(home, customProjects) {
     sidebar.querySelector('#secondary-time').innerText = config.secondaryTime.name
 }
 
-function newDeleteElement(action) {
+function newDeleteElement(action, className) {
     const deleteIcon = document.createElement('button')
-    deleteIcon.classList.add('fa-solid', 'fa-xmark', 'project-delete')
-    deleteIcon.onclick = action
+    deleteIcon.classList.add('fa-solid', 'fa-xmark', className)
+    deleteIcon.onclick = (e) => { action(); e.stopPropagation(); }
     return deleteIcon
 }
 
@@ -94,7 +94,7 @@ function createProjectComponent(project, deletable) {
         btn.append(newDeleteElement(() => { 
             projects.splice(projects.indexOf(project), 1);
             btn.remove()
-        }))
+        }, 'project-delete'))
     }
     return btn
 }
@@ -114,6 +114,9 @@ function createNoteComponent(note) {
     const p = document.createElement('p')
     p.innerText = note.getContent()
     div.appendChild(p)
+
+    const deleteBtn = newDeleteElement(() => { removeNote(note) }, 'note-delete')
+    div.appendChild(deleteBtn)
 
     const dateElement = document.createElement('input')
     dateElement.type = 'date'
@@ -174,6 +177,13 @@ function getNoteFromId(id) {
         }
     }
     return null
+}
+
+function removeNote(note) {
+    for (const project of projects) {
+        project.removeNote(note)
+    }
+    document.querySelectorAll(`#note-${note.getId()}`).forEach( (n) => { n.remove() })
 }
 
 function removePopup() {
