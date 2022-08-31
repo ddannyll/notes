@@ -51,17 +51,16 @@ function displayInputPopup(labelText, onsubmitFunction) {
         onsubmitFunction(form.elements['popup-input'].value);
         document.body.removeChild(form)
     }
-
+    const label = document.createElement('label')
+    label.for = "popup-input"
+    label.innerText = labelText
+    form.appendChild(label)
+    
     const input = document.createElement('input')
     input.type = "text"
     input.id = "popup-input"
     input.required = true
     form.appendChild(input)
-    
-    const label = document.createElement('label')
-    label.for = "popup-input"
-    label.innerText = labelText
-    form.appendChild(label)
     
     const submit = document.createElement('input')
     submit.type = 'submit'
@@ -147,12 +146,8 @@ function loadProjectNotes(project) {
     }
     const newNoteInput = document.createElement('input')
     newNoteInput.type = 'text'
-    newNoteInput.id = 'new-note-input'
+    newNoteInput.placeholder = 'New Note'
     newNoteForm.appendChild(newNoteInput)
-    const newNoteLabel = document.createElement('label')
-    newNoteLabel.for = 'new-note-input'
-    newNoteLabel.innerText = 'Create a new note'
-    newNoteForm.appendChild(newNoteLabel)
     notesDiv.appendChild(newNoteForm)
 
     activeProject = project
