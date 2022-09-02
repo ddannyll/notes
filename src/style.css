@@ -134,6 +134,7 @@ h2 {
 
 hr {
     margin: 1rem 0;
+    opacity: 0.5;
 }
 
 input[type="text"] {
@@ -152,6 +153,7 @@ input[type="text"] {
     padding: 1rem;
     box-shadow: 0px 0px 10px -5px;
     border-radius: 0.5rem;
+    backdrop-filter: blur(10px);
 }
 
 .main {

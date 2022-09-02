@@ -1,7 +1,5 @@
-import { fromUnixTime } from 'date-fns'
 import Note from './note'
 import Project from './project'
-import config from '../config'
 
 let projects = []
 const main = document.querySelector('div.main')
@@ -44,8 +42,7 @@ function loadSidebar(home, customProjects) {
     
     customProjects.forEach(appendProject);
 
-    sidebar.querySelector('#primary-time').innerText = config.primaryTime.name
-    sidebar.querySelector('#secondary-time').innerText = config.secondaryTime.name
+
 }
 
 function newDeleteElement(action, className) {
@@ -178,6 +175,11 @@ function loadProjectNotes(project) {
     newNoteForm.appendChild(newNoteInput)
     notesDiv.appendChild(newNoteForm)
 
+}
+
+function loadTimeView(hours) {
+    const currentDate = new Date()
+    currentDate.setHours(0, 0, 0, 0)
 }
 
 function getNoteFromId(id) {
