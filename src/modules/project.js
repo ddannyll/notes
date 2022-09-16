@@ -1,5 +1,3 @@
-import Note from "./note"
-
 class Project {
     static #count = 0
     #id

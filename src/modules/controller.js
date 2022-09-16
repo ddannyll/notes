@@ -177,10 +177,6 @@ function loadProjectNotes(project) {
 
 }
 
-function loadTimeView(hours) {
-    const currentDate = new Date()
-    currentDate.setHours(0, 0, 0, 0)
-}
 
 function getNoteFromId(id) {
     for (const project of projects) {
